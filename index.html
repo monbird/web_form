@@ -1,148 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Web form</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="./logic.js"></script>
-</head>
-<body>
-<br>
-<div class="container">
-    <h1 class="text-center">PERSONAL INFO</h1>
-    <br>
-    <form id="personal-info-form" action="#">
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="first_name">FIRST NAME*</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-user"></i>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" id="first_name" name="f_name"  autofocus>
-                </div>
-                <div class="invalid-feedback"></div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="last_name">LAST NAME*</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-user"></i>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" id="last_name" name="l_name">
-                </div>
-                <div class="invalid-feedback"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="email">EMAIL*</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-envelope"></i>
-                        </span>
-                    </div>
-                    <input type="email" class="form-control" id="email" name="email">
-                </div>   
-                <div class="invalid-feedback"></div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="phone">PHONE NUMBER</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-phone"></i>
-                        </span>
-                    </div>
-                    <input type="tel" class="form-control" id="phone" name="phone">
-                </div>
-                <div class="invalid-feedback"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="address">ADDRESS*</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-home"></i>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" id="address" name="address">
-                </div>
-                <div class="invalid-feedback"></div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="add_address">ADDITIONAL ADDRESS</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-home"></i>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" id="add_address" name="add_address">
-                </div>
-                <div class="invalid-feedback"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="city">CITY*</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-home"></i>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" id="city" name="city">
-                </div>
-                <div class="invalid-feedback"></div>
-            </div>
-            <div class="form-group col-md-3">
-                <label for="state">STATE*</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-home"></i>
-                        </span>
-                    </div>
-                    <select class="form-control" id="state">
-                        <option value="">--</option>
-                        <option value="CA">California</option>
-                        <option value="NV">Nevada</option>
-                        <option value="UT">Utah</option>
-                        <option value="AZ">Arizona</option>
-                    </select>
-                </div>
-                <div class="invalid-feedback"></div>
-            </div>
-            <div class="form-group col-md-3">
-                <label for="zip_code">ZIP CODE*</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-home"></i>
-                        </span>
-                    </div>
-                    <input type="number" class="form-control" id="zip_code" name="zip_code">
-                </div>
-                <div class="invalid-feedback"></div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block" id="submitButton">Submit</button>
-    </form>
-</div>
 
+<head>
+    <title>Web form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script> <script
+        src="./logic.js"></script>
+</head>
+
+<body>
+    <div class="container" id="wrapper">
+        <h1 class="text-center">P&nbsp;E&nbsp;R&nbsp;S&nbsp;O&nbsp;N&nbsp;A&nbsp;L&nbsp; &nbsp;I&nbsp;N&nbsp;F&nbsp;O
+        </h1>
+        <form id="personal-info-form" action="#">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="first_name">FIRST NAME*</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="first_name" name="f_name" autofocus>
+                    </div>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="last_name">LAST NAME*</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="last_name" name="l_name">
+                    </div>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="email">EMAIL*</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                        </div>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="phone">PHONE NUMBER<span class="optional"> (optional)</span></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-phone"></i>
+                            </span>
+                        </div>
+                        <input type="tel" class="form-control" id="phone" name="phone">
+                    </div>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="address">ADDRESS*</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-home"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="address" name="address">
+                    </div>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="add_address">ADDITIONAL ADDRESS<span class="optional"> (optional)</span></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-home"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="add_address" name="add_address">
+                    </div>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="city">CITY*</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-home"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="city" name="city">
+                    </div>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="state">STATE*</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-home"></i>
+                            </span>
+                        </div>
+                        <select class="form-control" id="state">
+                            <option value="">--</option>
+                            <option value="CA">California</option>
+                            <option value="NV">Nevada</option>
+                            <option value="UT">Utah</option>
+                            <option value="AZ">Arizona</option>
+                        </select>
+                    </div>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="zip_code">ZIP CODE*</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-home"></i>
+                            </span>
+                        </div>
+                        <input type="number" class="form-control" id="zip_code" name="zip_code">
+                    </div>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+        </form>
+        <img hidden id="lama" src="./lama_pic.jpg" />
+    </div>
 </body>
+
 </html>

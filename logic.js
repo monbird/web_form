@@ -1,8 +1,10 @@
-$(document).ready(function() {
-    $("#personal-info-form").submit(function(event) {      
+$(document).ready(function () {
+    $("#personal-info-form").submit(function (event) {
+        event.preventDefault(); // powstrzymuje domyslna akcje tego event czyli submit
         var allPassed = formValidation();
-        if (!allPassed) {
-            event.preventDefault();  // powstrzymuje domyslna akcje tego event czyli submit
+        if (allPassed) {
+            $("form").html("<div class='alert alert-dark alert-dismissible'>Thank you! Your details have been <strong>saved</strong>.<button id='closeAlert' type='button' class='close' data-dismiss='alert'>&times;</button></div>");
+            $("#closeAlert").click(showLama);
         }
     });
     $("#first_name").on('keyup', validateFirstName);
@@ -12,31 +14,35 @@ $(document).ready(function() {
     $("#address").on('keyup', validateAddress);
     $("#add_address").on('keyup', validateAddAddress);
     $("#city").on('keyup', validateCity);
-    $("#state").on('keyup', validateState);
+    $("#state").on('change', validateState);
     $("#zip_code").on('keyup', validateZipCode);
 });
 
-var regexLetters = /^[A-Za-z]+$/gi;
-var regexZipCode = /^[0-9]{5}$/gi;
-var regexEmail = /^\S+@\S+\.\S+$/gi;
-var regexTel = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$|^[0-9]{10}$|^\([0-9]{3}\)-[0-9]{3}-[0-9]{4}$|^\+1{1}-[0-9]{10}$|^\+1{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}$/gi;
+var regexLetters = /^[A-Za-z]+$/i;
+var regexZipCode = /^[0-9]{5}$/i;
+var regexEmail = /^\S+@\S+\.\S+$/i;
+var regexTel = /^([0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{10}|\([0-9]{3}\)-[0-9]{3}-[0-9]{4}|\+1{1}-[0-9]{10}|\+1{1}-[0-9]{3}-[0-9]{3}-[0-9]{4})$/i;
+
+function showLama() {
+    $("#lama").removeAttr('hidden');
+}
 
 function validateFirstName() {
     var field = $("#first_name");
     var value = field.val();
     var errorContainer = field.closest('.form-group').find('.invalid-feedback');
 
-    if(value.length != 0 && regexLetters.test(value)) {
+    if (value.length != 0 && regexLetters.test(value)) {
         field.removeClass('is-invalid').addClass('is-valid');
         errorContainer.text("").hide();
         return true;
     } else if (value.length == 0) {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("Give me your first name!").show(); 
+        errorContainer.text("Please enter your first name").show();
         return false;
     } else if (!regexLetters.test(value)) {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("Only letters bitch!").show();
+        errorContainer.text("Invalid format - only letters are accepted").show();
         return false;
     }
 }
@@ -46,17 +52,17 @@ function validateLastName() {
     var value = field.val();
     var errorContainer = field.closest('.form-group').find('.invalid-feedback');
 
-    if(value.length != 0 && regexLetters.test(value)) {
+    if (value.length != 0 && regexLetters.test(value)) {
         field.removeClass('is-invalid').addClass('is-valid');
         errorContainer.text("").hide();
         return true;
     } else if (value.length == 0) {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("Give me your last name!").show(); 
+        errorContainer.text("Please enter your last name").show();
         return false;
     } else if (!regexLetters.test(value)) {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("Only letters bitch!").show();
+        errorContainer.text("Invalid format - only letters are accepted").show();
         return false;
     }
 }
@@ -66,17 +72,17 @@ function validateEmail() {
     var value = field.val();
     var errorContainer = field.closest('.form-group').find('.invalid-feedback');
 
-    if(value.length != 0 && regexEmail.test(value)) {
+    if (value.length != 0 && regexEmail.test(value)) {
         field.removeClass('is-invalid').addClass('is-valid');
         errorContainer.text("").hide();
         return true;
     } else if (value.length == 0) {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("Give me your email!").show(); 
+        errorContainer.text("Please enter your email address").show();
         return false;
     } else if (!regexEmail.test(value)) {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("Invalid email format!").show();
+        errorContainer.text("Please enter a valid email address").show();
         return false;
     }
 }
@@ -84,9 +90,10 @@ function validateEmail() {
 function validatePhone() {
     var field = $("#phone");
     var value = field.val();
-    var errorContainer = field.closest('.form-group').find('.invalid-feedback');
 
-    if(regexTel.test(value)) {
+    var errorContainer = field.closest('.form-group').find('.invalid-feedback');
+    var regex_result = regexTel.test(value);
+    if (regex_result) {
         field.removeClass('is-invalid').addClass('is-valid');
         errorContainer.text("").hide();
         return true;
@@ -96,7 +103,7 @@ function validatePhone() {
         return true;
     } else {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("Invalid phone number!").show();
+        errorContainer.text("Please enter a valid phone number").show();
         return false;
     }
 }
@@ -106,13 +113,13 @@ function validateAddress() {
     var value = field.val();
     var errorContainer = field.closest('.form-group').find('.invalid-feedback');
 
-    if(value.length != 0) {
+    if (value.length != 0) {
         field.removeClass('is-invalid').addClass('is-valid');
         errorContainer.text("").hide();
         return true;
     } else {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("What's your address stupid?").show(); 
+        errorContainer.text("Please enter your address").show();
         return false;
     }
 }
@@ -122,7 +129,7 @@ function validateAddAddress() {
     var value = field.val();
     var errorContainer = field.closest('.form-group').find('.invalid-feedback');
 
-    if(value.length != 0) {
+    if (value.length != 0) {
         field.removeClass('is-invalid').addClass('is-valid');
         errorContainer.text("").hide();
         return true;
@@ -138,17 +145,17 @@ function validateCity() {
     var value = field.val();
     var errorContainer = field.closest('.form-group').find('.invalid-feedback');
 
-    if(value.length != 0 && regexLetters.test(value)) {
+    if (value.length != 0 && regexLetters.test(value)) {
         field.removeClass('is-invalid').addClass('is-valid');
         errorContainer.text("").hide();
         return true;
     } else if (value.length == 0) {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("What's your city?").show(); 
+        errorContainer.text("Please enter your city").show();
         return false;
     } else if (!regexLetters.test(value)) {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("Only letters are accepted!").show();
+        errorContainer.text("Invalid format - only letters are accepted").show();
         return false;
     }
 }
@@ -158,13 +165,13 @@ function validateState() {
     var value = field.val();
     var errorContainer = field.closest('.form-group').find('.invalid-feedback');
 
-    if(value.length != 0) {
+    if (value.length != 0) {
         field.removeClass('is-invalid').addClass('is-valid');
         errorContainer.text("").hide();
         return true;
     } else {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("Choose your state mother-fucker!").show(); 
+        errorContainer.text("Please choose your state").show();
         return false;
     }
 }
@@ -174,32 +181,30 @@ function validateZipCode() {
     var value = field.val();
     var errorContainer = field.closest('.form-group').find('.invalid-feedback');
 
-    if(regexZipCode.test(value)) {
+    if (regexZipCode.test(value)) {
         field.removeClass('is-invalid').addClass('is-valid');
         errorContainer.text("").hide();
         return true;
     } else if (value.length == 0) {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("Forgot your zip?").show(); 
+        errorContainer.text("Please enter your zip code").show();
         return false;
     } else if (!regexZipCode.test(value)) {
         field.removeClass('is-valid').addClass('is-invalid');
-        errorContainer.text("Wrong format. Provide 5 numbers").show();
+        errorContainer.text("Invalid format - zip code must contain 5 numbers").show();
         return false;
     }
 }
 
-
 function formValidation() {
     var pass = validateFirstName();
-    pass = pass && validateLastName();
-    pass = pass && validateEmail();
-    pass = pass & validatePhone();
-    pass = pass & validateAddress();
-    pass = pass && validateAddAddress();
-    pass = pass && validateCity();
-    pass = pass && validateState();
-    pass = pass && validateZipCode();
-
+    pass = validateLastName() && pass;
+    pass = validateEmail() && pass;
+    pass = validatePhone() && pass;
+    pass = validateAddress() && pass;
+    pass = validateAddAddress() && pass;
+    pass = validateCity() && pass;
+    pass = validateState() && pass;
+    pass = validateZipCode() && pass;
     return pass;
 }
